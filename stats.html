@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>SportVerse ⚾ 통계 대시보드</title>
+  <link rel="icon" href="assets/logo_baseball.svg" />
+  <link rel="stylesheet" href="css/baseball.css" />
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<body>
+  <header class="navbar">
+    <div class="nav-inner">
+      <div class="brand">
+        <img src="assets/logo_baseball.svg" alt="logo">
+        <h1>SportVerse 통계</h1>
+      </div>
+      <nav>
+        <a href="index.html">기록 입력</a>
+        <a href="stats.html" class="active">통계</a>
+      </nav>
+    </div>
+  </header>
+
+  <main class="container">
+    <section class="dashboard">
+      <h2>📈 선수별 주요 스탯 비교</h2>
+
+      <div class="chart-card">
+        <h3>타율 상위 TOP 5</h3>
+        <canvas id="avgChart"></canvas>
+      </div>
+
+      <div class="chart-card">
+        <h3>홈런 누적 순위</h3>
+        <canvas id="hrChart"></canvas>
+      </div>
+
+      <div class="chart-card">
+        <h3>팀별 득점 총합</h3>
+        <canvas id="teamScoreChart"></canvas>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <p>© 2025 SportVerse League — 기록 통계 시스템</p>
+  </footer>
+
+  <script src="js/stats.js"></script>
+</body>
+</html>

@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>SportVerse ⚾ 야구 기록 관리</title>
+  <link rel="icon" href="assets/logo_baseball.svg">
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/baseball.css">
+</head>
+<body>
+  <header class="navbar">
+    <div class="nav-inner">
+      <div class="brand">
+        <img src="assets/logo_baseball.svg" alt="logo">
+        <h1>야구 기록 관리</h1>
+      </div>
+      <nav>
+        <a href="#">홈</a>
+        <a href="#">기록 입력</a>
+        <a href="#">통계</a>
+        <a href="#">설정</a>
+      </nav>
+    </div>
+  </header>
+
+  <main class="container">
+    <!-- 입력 폼 -->
+    <section class="input-card">
+      <h2>⚾ 기록 입력</h2>
+      <div class="form-grid">
+        <label>선수 이름<input type="text" placeholder="예: RiGuRi"></label>
+        <label>포지션
+          <select>
+            <option>투수</option>
+            <option>포수</option>
+            <option>1루수</option>
+            <option>2루수</option>
+            <option>3루수</option>
+            <option>유격수</option>
+            <option>외야수</option>
+          </select>
+        </label>
+        <label>타수<input type="number" min="0" value="0"></label>
+        <label>안타<input type="number" min="0" value="0"></label>
+        <label>홈런<input type="number" min="0" value="0"></label>
+        <label>득점<input type="number" min="0" value="0"></label>
+      </div>
+      <div class="actions">
+        <button class="btn primary">기록 저장</button>
+        <button class="btn secondary">초기화</button>
+      </div>
+    </section>
+
+    <!-- 기록 테이블 -->
+    <section class="record-card">
+      <h2>📊 기록 목록</h2>
+      <div class="table-wrap">
+        <table>
+          <thead>
+            <tr>
+              <th>선수</th>
+              <th>포지션</th>
+              <th>타수</th>
+              <th>안타</th>
+              <th>홈런</th>
+              <th>득점</th>
+              <th>타율</th>
+              <th>날짜</th>
+              <th>수정</th>
+              <th>삭제</th>
+            </tr>
+          </thead>
+          <tbody id="recordList">
+            <tr>
+              <td>RiGuRi</td>
+              <td>1루수</td>
+              <td>7</td><td>3</td><td>1</td><td>2</td>
+              <td>.429</td>
+              <td>2025.11.07</td>
+              <td><button class="btn small">수정</button></td>
+              <td><button class="btn small danger">삭제</button></td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <p>© 2025 SportVerse League — 야구 기록 관리 시스템</p>
+  </footer>
+
+  <script src="js/main.js"></script>
+</body>
+</html>
