@@ -2,51 +2,68 @@
 <html lang="ko">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>SportVerse ⚾ 통계 대시보드</title>
-  <link rel="icon" href="assets/logo_baseball.svg" />
-  <link rel="stylesheet" href="css/baseball.css" />
-  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>📊 기록 목록 - SportVerse</title>
+  <link rel="stylesheet" href="./css/style.css" />
 </head>
 <body>
-  <header class="navbar">
-    <div class="nav-inner">
-      <div class="brand">
-        <img src="assets/logo_baseball.svg" alt="logo">
-        <h1>SportVerse 통계</h1>
-      </div>
-      <nav>
-        <a href="index.html">기록 입력</a>
-        <a href="stats.html" class="active">통계</a>
-      </nav>
-    </div>
-  </header>
-
   <main class="container">
-    <section class="dashboard">
-      <h2>📈 선수별 주요 스탯 비교</h2>
+    <h1>📊 기록 목록</h1>
+    <table>
+      <thead>
+        <tr>
+          <th>선수</th><th>포지션</th><th>타수</th><th>안타</th>
+          <th>홈런</th><th>특점</th><th>타율</th><th>날짜</th><th>삭제</th>
+        </tr>
+      </thead>
+      <tbody id="recordList"></tbody>
+    </table>
 
-      <div class="chart-card">
-        <h3>타율 상위 TOP 5</h3>
-        <canvas id="avgChart"></canvas>
-      </div>
-
-      <div class="chart-card">
-        <h3>홈런 누적 순위</h3>
-        <canvas id="hrChart"></canvas>
-      </div>
-
-      <div class="chart-card">
-        <h3>팀별 득점 총합</h3>
-        <canvas id="teamScoreChart"></canvas>
-      </div>
-    </section>
+    <a href="index.html" class="link">← 기록 입력으로 돌아가기</a>
   </main>
 
-  <footer class="footer">
-    <p>© 2025 SportVerse League — 기록 통계 시스템</p>
-  </footer>
+  <script type="module" src="./js/firebase.js"></script>
+  <script type="module">
+    import { db } from "./js/firebase.js";
+    import {
+      collection, getDocs, deleteDoc, doc, query, orderBy
+    } from "https://www.gstatic.com/firebasejs/11.0.1/firebase-firestore.js";
 
-  <script src="js/stats.js"></script>
+    const recordList = document.getElementById("recordList");
+
+    async function loadRecords() {
+      recordList.innerHTML = "";
+      const q = query(collection(db, "records"), orderBy("date", "desc"));
+      const snapshot = await getDocs(q);
+
+      snapshot.forEach((docSnap) => {
+        const data = docSnap.data();
+        const tr = document.createElement("tr");
+        const date = data.date?.toDate ? data.date.toDate().toLocaleDateString("ko-KR") : "-";
+
+        tr.innerHTML = `
+          <td>${data.name}</td>
+          <td>${data.pos}</td>
+          <td>${data.atBat}</td>
+          <td>${data.hit}</td>
+          <td>${data.hr}</td>
+          <td>${data.rbi}</td>
+          <td>${data.avg}</td>
+          <td>${date}</td>
+          <td><button class="del" data-id="${docSnap.id}">삭제</button></td>
+        `;
+        recordList.appendChild(tr);
+      });
+
+      document.querySelectorAll(".del").forEach(btn => {
+        btn.addEventListener("click", async () => {
+          await deleteDoc(doc(db, "records", btn.dataset.id));
+          loadRecords();
+        });
+      });
+    }
+
+    loadRecords();
+  </script>
 </body>
 </html>

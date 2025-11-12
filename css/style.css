@@ -1,0 +1,176 @@
+@import url("https://fonts.googleapis.com/css2?family=Pretendard:wght@400;500;600;700&display=swap");
+
+:root {
+  --bg: #0b1120;
+  --card: #1e293b;
+  --border: #334155;
+  --text: #f8fafc;
+  --accent: #2563eb;
+  --accent-hover: #1d4ed8;
+  --danger: #dc2626;
+  --muted: #94a3b8;
+  --radius: 10px;
+  --shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
+}
+
+* {
+  box-sizing: border-box;
+  transition: 0.2s;
+}
+
+body {
+  font-family: "Pretendard", sans-serif;
+  background: var(--bg);
+  color: var(--text);
+  margin: 0;
+  padding: 30px;
+  line-height: 1.5;
+}
+
+h1 {
+  text-align: center;
+  font-weight: 700;
+  margin-bottom: 16px;
+  color: #fff;
+}
+
+.container {
+  max-width: 900px;
+  margin: auto;
+}
+
+/* 카드형 입력폼 */
+.form {
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 24px;
+  box-shadow: var(--shadow);
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+label {
+  font-weight: 600;
+  margin-bottom: 4px;
+}
+
+input, select {
+  background: #0f172a;
+  border: 1px solid var(--border);
+  color: var(--text);
+  border-radius: var(--radius);
+  padding: 10px;
+  font-size: 15px;
+  outline: none;
+}
+
+input:focus, select:focus {
+  border-color: var(--accent);
+  box-shadow: 0 0 6px rgba(37, 99, 235, 0.4);
+}
+
+.stats {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 10px;
+  width: 100%;
+}
+
+.stats input {
+  width: 100%;
+  box-sizing: border-box;
+}
+
+button, .link {
+  cursor: pointer;
+  background: var(--accent);
+  border: none;
+  color: white;
+  padding: 10px 14px;
+  border-radius: var(--radius);
+  font-weight: 600;
+  font-size: 15px;
+  text-decoration: none;
+  text-align: center;
+  display: inline-block;
+}
+
+button:hover, .link:hover {
+  background: var(--accent-hover);
+  transform: translateY(-1px);
+}
+
+.secondary {
+  background: transparent;
+  border: 1px solid var(--accent);
+  color: var(--accent);
+}
+
+.secondary:hover {
+  background: var(--accent);
+  color: white;
+}
+
+.btns {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 10px;
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 20px;
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  overflow: hidden;
+  box-shadow: var(--shadow);
+  background: var(--card);
+}
+
+th, td {
+  padding: 12px;
+  text-align: center;
+  border-bottom: 1px solid var(--border);
+  font-size: 15px;
+}
+
+th {
+  background: #334155;
+  color: #e2e8f0;
+  font-weight: 600;
+}
+
+tr:nth-child(even) {
+  background: #111827;
+}
+
+tr:hover {
+  background: rgba(37, 99, 235, 0.1);
+}
+
+button.del {
+  background: var(--danger);
+  padding: 6px 10px;
+  font-size: 14px;
+  border-radius: 6px;
+}
+
+button.del:hover {
+  background: #b91c1c;
+}
+
+@media (max-width: 600px) {
+  .stats {
+    grid-template-columns: repeat(2, 1fr);
+  }
+  button, .link {
+    width: 100%;
+  }
+  .btns {
+    flex-direction: column;
+    gap: 10px;
+  }
+}
